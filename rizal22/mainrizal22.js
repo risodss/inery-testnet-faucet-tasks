@@ -24,8 +24,8 @@ app.use(express.json());
 app.use(express.static());
 
 app.post('/dapp22', async (req, res) => {
-  const actioninery = req.body.actioninery;
-  const dataIdinery = parseInt(req.body.dataIdinery);
+  const actioninery = req.body.action;
+  const dataIdinery = parseInt(req.body.data);
   const data = req.body.data;
   if (['create', 'read', 'update', 'destroy'].includes(actioninery) && !isNaN(dataIdinery)) {
     try {
