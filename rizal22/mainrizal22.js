@@ -5,22 +5,23 @@ const axios = require('axios');
 
 dotenv.config();
 
-const accounts = "<isi dengan akun Anda>";
-const PORT = "<isi dengan port yang ingin digunakan>";
-const node = "<isi dengan URL dari node Anda>";
-const private_key = "<isi dengan private key Anda>";
+const accounts = "rizal22";
+const PORT = "5174";
+const node = "http://178.128.95.30:8888";
+const private_key = "5Kb5pF9FqL9FngRZZS7Ld2hy1WYZ6o7H4efTo4ErTnUiiRmRce9";
 const json_rpc = new JsonRpc(node);
 const signature = new JsSignatureProvider([private_key]);
+
+const app = express();
+
+app.use(express.static('public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const api = new Api({
   rpc: json_rpc,
   signatureProvider: signature,
 });
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static('public'));
-
 
 app.post('/dapp22', async (req, res) => {
   const actioninery = req.body.action;
