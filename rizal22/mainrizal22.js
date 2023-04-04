@@ -5,16 +5,16 @@ const axios = require('axios');
 
 dotenv.config();
 
-const accounts = "rizal22";
-const PORT = "5174";
-const node = "http://178.128.95.30:8888";
-const private_key = "5Kb5pF9FqL9FngRZZS7Ld2hy1WYZ6o7H4efTo4ErTnUiiRmRce9";
+const account = "<isi dengan akun Anda>";
+const PORT = "<isi dengan port yang ingin digunakan>";
+const node = "<isi dengan URL dari node Anda>";
+const private_key = "<isi dengan private key Anda>";
 const json_rpc = new JsonRpc(node);
 const signature = new JsSignatureProvider([private_key]);
 
 const app = express();
 
-app.use(express.static('public'));
+app.use(express.static('dapp22'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -24,18 +24,18 @@ const api = new Api({
 });
 
 app.post('/dapp22', async (req, res) => {
-  const actioninery = req.body.action;
-  const dataIdinery = parseInt(req.body.data);
+  const action = req.body.action;
+  const dataId = parseInt(req.body.data);
   const data = req.body.data;
-  if (['create', 'read', 'update', 'destroy'].includes(actioninery) && !isNaN(dataIdinery)) {
+  if (['create', 'read', 'update', 'destroy'].includes(action) && !isNaN(dataId)) {
     try {
       const results = await api.transact({
         actions: [
           {
-            account: accounts,
-            name: actioninery,
-            authorization: [{ actor: accounts, permission: 'active' }],
-            data: { id: dataIdinery, user: accounts, data },
+            account: account,
+            name: action,
+            authorization: [{ actor: account, permission: 'active' }],
+            data: { id: dataId, user: account, data },
           },
         ],
       });
