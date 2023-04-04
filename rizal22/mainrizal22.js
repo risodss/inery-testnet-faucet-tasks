@@ -5,11 +5,11 @@ const axios = require('axios');
 
 dotenv.config();
 
-const accounts ="";
-const PORT ="";
-const node ="";
+const accounts = "<isi dengan akun Anda>";
+const PORT = "<isi dengan port yang ingin digunakan>";
+const node = "<isi dengan URL dari node Anda>";
+const private_key = "<isi dengan private key Anda>";
 const json_rpc = new JsonRpc(node);
-const private_key ="";
 const signature = new JsSignatureProvider([private_key]);
 
 const api = new Api({
@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static());
 
-app.post('dapp22', async (req, res) => {
+app.post('/dapp22', async (req, res) => {
   const actioninery = req.body.actioninery;
   const dataIdinery = parseInt(req.body.dataIdinery);
   const data = req.body.data;
@@ -51,9 +51,9 @@ app.post('dapp22', async (req, res) => {
 });
 
 (async () => {
-  const ip_node = await axios.get('https://api.ipify.org');
-  const port_node = PORT || 3000;
-  app.listen(port_node, () => {
-    console.log(`Server running on http://${ip_node.data}:${port_node}`);
+  const ip = await axios.get('https://api.ipify.org');
+  const port = PORT || 3000;
+  app.listen(port, () => {
+    console.log(`Server running on http://${ip.data}:${port}`);
   });
 })();
