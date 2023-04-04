@@ -17,11 +17,10 @@ const api = new Api({
   signatureProvider: signature,
 });
 
-const app = express();
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static());
+app.use(express.static('public'));
+
 
 app.post('/dapp22', async (req, res) => {
   const actioninery = req.body.action;
